@@ -13,12 +13,10 @@ namespace Eventures.Middleware
     public class SeedRolesMiddleware
     {
         private readonly RequestDelegate next;
-        private readonly IHashService hashService;
 
-        public SeedRolesMiddleware(RequestDelegate next, IHashService hashService)
+        public SeedRolesMiddleware(RequestDelegate next)
         {
             this.next = next;
-            this.hashService = hashService;
         }
 
         public async Task InvokeAsync(
@@ -41,9 +39,8 @@ namespace Eventures.Middleware
             {
                 var user = new User
                 {
-                    UserName = "Admin",
+                    UserName = "Admin@Admin.Admin",
                     Email = "Admin@Admin.Admin",
-                    PasswordHash = hashService.GetHash("Admin"),
                     FirstName = "Secret",
                     LastName = "Secret",
                 };
