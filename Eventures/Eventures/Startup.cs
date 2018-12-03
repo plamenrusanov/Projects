@@ -56,7 +56,9 @@ namespace Eventures
                 .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<ApplicationDbContext>();
             services.AddTransient<IHashService, HashService>();
+            services.AddTransient<IEventService, EventService>();
         
         }
 

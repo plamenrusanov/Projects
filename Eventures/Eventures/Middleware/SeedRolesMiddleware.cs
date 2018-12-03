@@ -35,7 +35,7 @@ namespace Eventures.Middleware
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
-            if (!dbContext.Users.Any(x => x.UserName == "Admin"))
+            if (!dbContext.Users.Any(x => x.UserName == "Admin@Admin.Admin"))
             {
                 var user = new User
                 {

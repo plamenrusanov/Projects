@@ -1,3 +1,26 @@
 ﻿.bg-event {
     background-color: #AFEEEE;
 }
+.w-50{
+    width: 50%;
+}
+.w-60{
+    width: 60%;
+}
+.hr-event {
+    border: solid 1px ;
+    border-color: #AFEEEE;
+}
+.nav-event{
+    margin-bottom:5px !important;
+}
+.div-empty {
+    background-color:white;
+    height :10px;
+    width : auto;
+}
+.btn-event {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #337ab7;
+}

@@ -41,6 +41,11 @@ namespace Eventures.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [MinLength(5)]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -55,6 +60,21 @@ namespace Eventures.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [MinLength(5)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [MinLength(5)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Required]
+            [MinLength(5)]
+            [Display(Name = "UCN")]
+            public string UCN { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -67,7 +87,7 @@ namespace Eventures.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                var user = new User { UserName = Input.Username, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, UniqueCitizenNumber = Input.UCN };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 await _userManager.AddToRoleAsync(user, "User");
                 if (result.Succeeded)

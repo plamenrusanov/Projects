@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Eventures.Models.EventViewModel>
+
+@{
+    ViewData["Title"] = "AllEvents";
+    int i = 1;
+    
+}
+
+<h1 class="text-center">All Events</h1>
+<hr class="hr-event"/>
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th class="col-sm-1">
+                #
+            </th>
+            <th class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <th class="col-sm-2">
+                @Html.DisplayNameFor(model => model.End)
+            </th>
+            <th class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="row">
+            <th class="col-sm-1">
+                @(i++)
+            </th>
+            <td class="col-sm-4">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.Start)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td class="col-sm-3">
+                @Html.DisplayFor(modelItem => item.Place)
+            </td>
+            @*<td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>*@
+        </tr>
+}
+    </tbody>
+</table>
+<hr class="hr-event" />

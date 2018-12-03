@@ -14,6 +14,11 @@ namespace Eventures.Data.Models
 
         public string UniqueCitizenNumber { get; set; }
 
-        public IdentityRole Role { get; set; }
+        public ICollection<IdentityUserRole<string>> IdentityUserRoles;
+
+        public User()
+        {
+            IdentityUserRoles = new HashSet<IdentityUserRole<string>>();
+        }
     }
 }
