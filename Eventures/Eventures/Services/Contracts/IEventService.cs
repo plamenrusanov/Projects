@@ -9,6 +9,13 @@ namespace Eventures.Services.Contracts
     public interface IEventService
     {
         string Create(CreateEventViewModel model);
+
         IEnumerable<EventViewModel> GetAllEvents();
+
+        EditEventViewModel GetEvent(string id);
+
+        string EditEvent(EditEventViewModel model);
+
+        string DeleteEvent(string id);
     }
 }

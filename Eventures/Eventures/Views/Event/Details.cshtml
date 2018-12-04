@@ -1,0 +1,57 @@
+﻿@model Eventures.Models.EditEventViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<main class="mt-3">
+    <h1 class="text-center">Details</h1>
+
+    <hr class="hr-event">
+
+    <div class="mx-auto">
+        <div class="row d-flex justify-content-around">
+            <div class="col-sm-6 flex-column">
+                <h2 class="text-center">Name</h2>
+                <h3 class="text-center">@Model.Name</h3>
+            </div>
+            <div class="col-sm-6 flex-column">
+                <h2 class="text-center">Place</h2>
+                <h3 class="text-center">@Model.Place</h3>
+            </div>
+        </div>
+
+        <hr class="hr-event">
+
+        <div class="row d-flex justify-content-between">
+            <div class="col-sm-6  flex-column">
+                <h2 class="text-center">Start Date</h2>
+                <h3 class="text-center mt-1">@Model.Start</h3>
+            </div>
+            <div class="col-sm-6  flex-column">
+                <h2 class="text-center">End Date</h2>
+                <h3 class="text-center mt-1">@Model.End</h3>
+            </div>
+        </div>
+
+        <hr class="hr-event">
+
+        <div class="row d-flex justify-content-around">
+            <div class="col-sm-6  flex-column">
+                <h2 class="text-center">Price per ticket</h2>
+                <h3 class="text-center mt-1">$ @Model.PricePerTicket</h3>
+            </div>
+            <div class="col-sm-6  flex-column">
+                <h2 class="text-center">Total tickets</h2>
+                <h3 class="text-center">@Model.TotalTickets</h3>
+            </div>
+        </div>
+
+        <hr class="hr-event">
+
+        <div class="text-center">
+            <a onclick="history.back()" class="btn btn-secondary btn-lg active bg-event">Back</a>
+            <a href="~/Event/Edit?Id=@Model.Id" class="btn btn-secondary btn-lg active bg-event" role="button" area-pressed="true">Edit</a> 
+        </div>
+    </div>
+</main>

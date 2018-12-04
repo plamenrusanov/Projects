@@ -29,30 +29,19 @@
             </div>
             <div class="navbar-collapse collapse">
 
-                @if (User.IsInRole("Admin"))
-                {
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li>
-                        <button class="btn btn-secondary btn-event dropdown-toggle bg-event" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Events
-                        </button>
-                        <div class="dropdown-menu">
-                            <a asp-area="" asp-controller="Event" asp-action="AllEvents">All Events</a>
-                            <a asp-area="" asp-controller="Event" asp-action="Create">Create Event</a>
-                        </div>
-                    </li>
-                </ul>
-
-                   
-
-
-                }
-                else
+                @if (!User.Identity.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     </ul>
+                }
+                else if (User.IsInRole("User"))
+                {
+                    <partial name="_UserMenuPartial" />
+                }
+                else
+                {
+                    <partial name="_AdminMenuPartial" />
                 }
                 <partial name="_LoginPartial" />
             </div>

@@ -24,3 +24,6 @@
     padding-bottom: 15px;
     color: #337ab7;
 }
+.dropdown-menu{
+    min-width:100px;
+}

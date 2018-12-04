@@ -14,7 +14,7 @@
             <th class="col-sm-1">
                 #
             </th>
-            <th class="col-sm-4">
+            <th class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th class="col-sm-2">
@@ -23,18 +23,21 @@
             <th class="col-sm-2">
                 @Html.DisplayNameFor(model => model.End)
             </th>
-            <th class="col-sm-3">
+            <th class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Place)
+            </th>
+            <th class="col-sm-2">
+                @Html.Display("Actions")
             </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr class="row">
-            <th class="col-sm-1">
+            <td class="col-sm-1">
                 @(i++)
-            </th>
-            <td class="col-sm-4">
+            </td>
+            <td class="col-sm-3">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td class="col-sm-2">
@@ -43,14 +46,14 @@
             <td class="col-sm-2">
                 @Html.DisplayFor(modelItem => item.End)
             </td>
-            <td class="col-sm-3">
+            <td class="col-sm-2">
                 @Html.DisplayFor(modelItem => item.Place)
             </td>
-            @*<td>
+            <td class="col-sm-2">
             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </td>*@
+            </td>
         </tr>
 }
     </tbody>

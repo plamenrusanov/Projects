@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Eventures.Models
 {
-    public class EventViewModel
+    public class EditEventViewModel
     {
         public string Id { get; set; }
 
@@ -16,5 +16,9 @@ namespace Eventures.Models
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }
+
+        public int TotalTickets { get; set; }
+
+        public decimal PricePerTicket { get; set; }
     }
 }
