@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Eventures.Data.Models
         public string LastName { get; set; }
 
         public string UniqueCitizenNumber { get; set; }
+
+        //public IFormFile Image { get; set; }
 
         public ICollection<IdentityUserRole<string>> IdentityUserRoles;
 

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Eventures.Data;
@@ -16,6 +11,7 @@ using Eventures.Data.Models;
 using Eventures.Middleware;
 using Eventures.Services.Contracts;
 using Eventures.Services;
+using Microsoft.Extensions.Logging;
 
 namespace Eventures
 {
@@ -55,16 +51,22 @@ namespace Eventures
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(opt =>
+                    opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())
+                   // opt.ModelBinderProviders.Insert(0,CustomModelBinder()
+                    )
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ApplicationDbContext>();
             services.AddTransient<IHashService, HashService>();
             services.AddTransient<IEventService, EventService>();
+            //services.AddSingleton<ILogger, MyFileLogger>();
         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddFile("Logs/myapp-{Date}.txt");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -75,7 +77,7 @@ namespace Eventures
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -84,6 +86,7 @@ namespace Eventures
            
             app.UseMvc(routes =>
             {
+                
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -1,0 +1,294 @@
+2018-12-05T23:04:22.6416663+02:00 0HLIQUKTH6TDM:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:62586/  0 (ca22a1cb)
+2018-12-05T23:04:22.6416663+02:00 0HLIQUKTH6TDL:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44379/   (ca22a1cb)
+2018-12-05T23:04:22.7932704+02:00 0HLIQUKTH6TDM:00000001 [INF] Request finished in 158.7487ms 200  (791a596a)
+2018-12-05T23:04:25.0316126+02:00 0HLIQUKTH6TDL:00000001 [WRN] No type was specified for the decimal column '"PricePerTicket"' on entity type '"Event"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'. (b5b4253a)
+2018-12-05T23:04:25.1248641+02:00 0HLIQUKTH6TDL:00000001 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:04:26.4887685+02:00 0HLIQUKTH6TDL:00000001 [INF] Executed DbCommand ("303"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:26.5725332+02:00 0HLIQUKTH6TDL:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:26.6492641+02:00 0HLIQUKTH6TDL:00000001 [INF] Executed DbCommand ("38"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:04:27.4232270+02:00 0HLIQUKTH6TDL:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Eventures.Controllers.HomeController.Index (Eventures)" (a44c0341)
+2018-12-05T23:04:27.4493012+02:00 0HLIQUKTH6TDL:00000001 [INF] Executing action method "Eventures.Controllers.HomeController.Index (Eventures)" - Validation state: Valid (dad538d7)
+2018-12-05T23:04:27.4636050+02:00 0HLIQUKTH6TDL:00000001 [INF] Executed action method "Eventures.Controllers.HomeController.Index (Eventures)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1.2248ms. (50a9e262)
+2018-12-05T23:04:27.5141729+02:00 0HLIQUKTH6TDL:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-12-05T23:04:27.9258233+02:00 0HLIQUKTH6TDL:00000001 [INF] Executed ViewResult - view "Index" executed in 351.0336ms. (f66409e9)
+2018-12-05T23:04:27.9322184+02:00 0HLIQUKTH6TDL:00000001 [INF] Executed action "Eventures.Controllers.HomeController.Index (Eventures)" in 503.7264ms (afa2e885)
+2018-12-05T23:04:27.9698069+02:00 0HLIQUKTH6TDL:00000001 [INF] Request finished in 5342.2042ms 200 text/html; charset=utf-8 (791a596a)
+2018-12-05T23:04:33.1603390+02:00 0HLIQUKTH6TDM:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44379/Identity/Account/Login   (ca22a1cb)
+2018-12-05T23:04:33.1789166+02:00 0HLIQUKTH6TDM:00000002 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:04:33.1867040+02:00 0HLIQUKTH6TDM:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:33.1963973+02:00 0HLIQUKTH6TDM:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:33.2073706+02:00 0HLIQUKTH6TDM:00000002 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:04:33.3092908+02:00 0HLIQUKTH6TDM:00000002 [INF] Route matched with "{page = \"/Account/Login\", area = \"Identity\", action = \"\", controller = \"\"}". Executing action "/Account/Login" (a44c0341)
+2018-12-05T23:04:33.3691515+02:00 0HLIQUKTH6TDM:00000002 [INF] Executing handler method "OnGetAsync" with arguments ([""]) - ModelState is Valid (d4ff7456)
+2018-12-05T23:04:33.3844848+02:00 0HLIQUKTH6TDM:00000002 [INF] AuthenticationScheme: "Identity.External" signed out. (d3f50c8d)
+2018-12-05T23:04:33.6140618+02:00 0HLIQUKTH6TDM:00000002 [INF] Executed action "/Account/Login" in 301.1876ms (afa2e885)
+2018-12-05T23:04:33.6186851+02:00 0HLIQUKTH6TDM:00000002 [INF] Request finished in 463.6557ms 200 text/html; charset=utf-8 (791a596a)
+2018-12-05T23:04:36.1612566+02:00 0HLIQUKTH6TDL:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44379/Identity/Account/Login application/x-www-form-urlencoded 261 (ca22a1cb)
+2018-12-05T23:04:36.1665682+02:00 0HLIQUKTH6TDL:00000002 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:04:36.1738614+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:36.1827319+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:36.1892423+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:04:36.1921741+02:00 0HLIQUKTH6TDL:00000002 [INF] Route matched with "{page = \"/Account/Login\", area = \"Identity\", action = \"\", controller = \"\"}". Executing action "/Account/Login" (a44c0341)
+2018-12-05T23:04:36.2471911+02:00 0HLIQUKTH6TDL:00000002 [INF] Executing handler method "OnPostAsync" with arguments ([""]) - ModelState is Valid (d4ff7456)
+2018-12-05T23:04:36.2766784+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Discriminator], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[FirstName], [u].[LastName], [u].[UniqueCitizenNumber]
+FROM [AspNetUsers] AS [u]
+WHERE ([u].[Discriminator] = N'User') AND ([u].[NormalizedUserName] = @__normalizedUserName_0)" (0723d8ff)
+2018-12-05T23:04:36.5063452+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed DbCommand ("6"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-12-05T23:04:36.5699581+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed DbCommand ("14"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2018-12-05T23:04:36.5800129+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:36.5984433+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2018-12-05T23:04:36.6127974+02:00 0HLIQUKTH6TDL:00000002 [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2018-12-05T23:04:36.6186686+02:00 0HLIQUKTH6TDL:00000002 [INF] User logged in. (fdce0db4)
+2018-12-05T23:04:36.6329021+02:00 0HLIQUKTH6TDL:00000002 [INF] Executing LocalRedirectResult, redirecting to "/". (cac120e6)
+2018-12-05T23:04:36.6385338+02:00 0HLIQUKTH6TDL:00000002 [INF] Executed action "/Account/Login" in 444.3982ms (afa2e885)
+2018-12-05T23:04:36.6490054+02:00 0HLIQUKTH6TDL:00000002 [INF] Request finished in 485.7716ms 302  (791a596a)
+2018-12-05T23:04:36.6539084+02:00 0HLIQUKTH6TDM:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44379/   (ca22a1cb)
+2018-12-05T23:04:36.6578087+02:00 0HLIQUKTH6TDM:00000003 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:04:36.6649992+02:00 0HLIQUKTH6TDM:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:36.6720940+02:00 0HLIQUKTH6TDM:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:36.6810732+02:00 0HLIQUKTH6TDM:00000003 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:04:36.6932533+02:00 0HLIQUKTH6TDM:00000003 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Eventures.Controllers.HomeController.Index (Eventures)" (a44c0341)
+2018-12-05T23:04:36.6977446+02:00 0HLIQUKTH6TDM:00000003 [INF] Executing action method "Eventures.Controllers.HomeController.Index (Eventures)" - Validation state: Valid (dad538d7)
+2018-12-05T23:04:36.7014485+02:00 0HLIQUKTH6TDM:00000003 [INF] Executed action method "Eventures.Controllers.HomeController.Index (Eventures)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.1126ms. (50a9e262)
+2018-12-05T23:04:36.7044400+02:00 0HLIQUKTH6TDM:00000003 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-12-05T23:04:36.7359419+02:00 0HLIQUKTH6TDM:00000003 [INF] Executed ViewResult - view "Index" executed in 31.4545ms. (f66409e9)
+2018-12-05T23:04:36.7404369+02:00 0HLIQUKTH6TDM:00000003 [INF] Executed action "Eventures.Controllers.HomeController.Index (Eventures)" in 42.8712ms (afa2e885)
+2018-12-05T23:04:36.7489637+02:00 0HLIQUKTH6TDM:00000003 [INF] Request finished in 89.4705ms 200 text/html; charset=utf-8 (791a596a)
+2018-12-05T23:04:39.8304128+02:00 0HLIQUKTH6TDL:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44379/Event/Create   (ca22a1cb)
+2018-12-05T23:04:39.8378061+02:00 0HLIQUKTH6TDL:00000003 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:04:39.8484953+02:00 0HLIQUKTH6TDL:00000003 [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:39.8630986+02:00 0HLIQUKTH6TDL:00000003 [INF] Executed DbCommand ("10"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:04:39.8752318+02:00 0HLIQUKTH6TDL:00000003 [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:04:39.8884502+02:00 0HLIQUKTH6TDL:00000003 [INF] Route matched with "{action = \"Create\", controller = \"Event\", page = \"\", area = \"\"}". Executing action "Eventures.Controllers.EventController.Create (Eventures)" (a44c0341)
+2018-12-05T23:04:39.8920692+02:00 0HLIQUKTH6TDL:00000003 [INF] Executing action method "Eventures.Controllers.EventController.Create (Eventures)" - Validation state: Valid (dad538d7)
+2018-12-05T23:04:39.8959698+02:00 0HLIQUKTH6TDL:00000003 [INF] Executed action method "Eventures.Controllers.EventController.Create (Eventures)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.559ms. (50a9e262)
+2018-12-05T23:04:39.9189317+02:00 0HLIQUKTH6TDL:00000003 [INF] Executing ViewResult, running view "Create". (c83d0e25)
+2018-12-05T23:04:40.0445840+02:00 0HLIQUKTH6TDL:00000003 [INF] Executed ViewResult - view "Create" executed in 145.9116ms. (f66409e9)
+2018-12-05T23:04:40.0480880+02:00 0HLIQUKTH6TDL:00000003 [INF] Executed action "Eventures.Controllers.EventController.Create (Eventures)" in 156.199ms (afa2e885)
+2018-12-05T23:04:40.1062356+02:00 0HLIQUKTH6TDL:00000003 [INF] Request finished in 222.0851ms 200 text/html; charset=utf-8 (791a596a)
+2018-12-05T23:05:53.2941086+02:00 0HLIQUKTH6TDN:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44379/Event/Create application/x-www-form-urlencoded 350 (ca22a1cb)
+2018-12-05T23:05:53.2977053+02:00 0HLIQUKTH6TDN:00000001 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:05:53.3072622+02:00 0HLIQUKTH6TDN:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:05:53.3114786+02:00 0HLIQUKTH6TDN:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:05:53.3188361+02:00 0HLIQUKTH6TDN:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:05:53.3287344+02:00 0HLIQUKTH6TDN:00000001 [INF] Route matched with "{action = \"Create\", controller = \"Event\", page = \"\", area = \"\"}". Executing action "Eventures.Controllers.EventController.Create (Eventures)" (a44c0341)
+2018-12-05T23:05:53.3502821+02:00 0HLIQUKTH6TDN:00000001 [INF] Executing action method "Eventures.Controllers.EventController.Create (Eventures)" with arguments (["Eventures.Models.CreateEventViewModel", "Keep-Alive", "Microsoft.Extensions.Logging.Logger`1[Eventures.Controllers.EventController]", ""]) - Validation state: Valid (4e3479ed)
+2018-12-05T23:05:53.5406909+02:00 0HLIQUKTH6TDN:00000001 [INF] Executed DbCommand ("57"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (DbType = Decimal), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [Events] ([Id], [End], [Name], [Place], [PricePerTicket], [Start], [TotalTickets])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);" (0723d8ff)
+2018-12-05T23:05:53.5530547+02:00 0HLIQUKTH6TDN:00000001 [INF] Event created: First Eventures (f7f4197d)
+2018-12-05T23:05:53.5594996+02:00 0HLIQUKTH6TDN:00000001 [INF] Executed action method "Eventures.Controllers.EventController.Create (Eventures)", returned result "Microsoft.AspNetCore.Mvc.RedirectResult" in 203.0891ms. (50a9e262)
+2018-12-05T23:05:53.5634552+02:00 0HLIQUKTH6TDN:00000001 [INF] Executing RedirectResult, redirecting to "AllEvents". (d98d540e)
+2018-12-05T23:05:53.5683859+02:00 0HLIQUKTH6TDN:00000001 [INF] Executed action "Eventures.Controllers.EventController.Create (Eventures)" in 234.8926ms (afa2e885)
+2018-12-05T23:05:53.5774081+02:00 0HLIQUKTH6TDN:00000001 [INF] Request finished in 279.2049ms 302  (791a596a)
+2018-12-05T23:05:53.5802744+02:00 0HLIQUKTH6TDN:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44379/Event/AllEvents   (ca22a1cb)
+2018-12-05T23:05:53.5869074+02:00 0HLIQUKTH6TDN:00000002 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:05:53.5935257+02:00 0HLIQUKTH6TDN:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:05:53.6004731+02:00 0HLIQUKTH6TDN:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:05:53.6072328+02:00 0HLIQUKTH6TDN:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:05:53.6119099+02:00 0HLIQUKTH6TDN:00000002 [INF] Route matched with "{action = \"AllEvents\", controller = \"Event\", page = \"\", area = \"\"}". Executing action "Eventures.Controllers.EventController.AllEvents (Eventures)" (a44c0341)
+2018-12-05T23:05:53.6143282+02:00 0HLIQUKTH6TDN:00000002 [INF] Executing action method "Eventures.Controllers.EventController.AllEvents (Eventures)" - Validation state: Valid (dad538d7)
+2018-12-05T23:05:53.6412139+02:00 0HLIQUKTH6TDN:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[Id], [x].[Name], [x].[Place], [x].[Start], [x].[End]
+FROM [Events] AS [x]
+ORDER BY [x].[Start]" (0723d8ff)
+2018-12-05T23:05:53.6494052+02:00 0HLIQUKTH6TDN:00000002 [INF] Executed action method "Eventures.Controllers.EventController.AllEvents (Eventures)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 32.6759ms. (50a9e262)
+2018-12-05T23:05:53.6722568+02:00 0HLIQUKTH6TDN:00000002 [INF] Executing ViewResult, running view "AllEvents". (c83d0e25)
+2018-12-05T23:05:53.7087725+02:00 0HLIQUKTH6TDN:00000002 [INF] Executed ViewResult - view "AllEvents" executed in 55.5136ms. (f66409e9)
+2018-12-05T23:05:53.7145618+02:00 0HLIQUKTH6TDN:00000002 [INF] Executed action "Eventures.Controllers.EventController.AllEvents (Eventures)" in 96.9297ms (afa2e885)
+2018-12-05T23:05:53.7258122+02:00 0HLIQUKTH6TDN:00000002 [INF] Request finished in 136.9502ms 200 text/html; charset=utf-8 (791a596a)
+2018-12-05T23:06:00.2815021+02:00 0HLIQUKTH6TDN:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44379/Event/Details/c6ecdacc-e5ad-4be1-bc88-d63556dcf54f   (ca22a1cb)
+2018-12-05T23:06:00.2846654+02:00 0HLIQUKTH6TDN:00000003 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:06:00.2978195+02:00 0HLIQUKTH6TDN:00000003 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:06:00.3062076+02:00 0HLIQUKTH6TDN:00000003 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:06:00.3141377+02:00 0HLIQUKTH6TDN:00000003 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:06:00.3197860+02:00 0HLIQUKTH6TDN:00000003 [INF] Route matched with "{action = \"Details\", controller = \"Event\", page = \"\", area = \"\"}". Executing action "Eventures.Controllers.EventController.Details (Eventures)" (a44c0341)
+2018-12-05T23:06:00.3229806+02:00 0HLIQUKTH6TDN:00000003 [INF] Executing action method "Eventures.Controllers.EventController.Details (Eventures)" with arguments (["c6ecdacc-e5ad-4be1-bc88-d63556dcf54f"]) - Validation state: Valid (4e3479ed)
+2018-12-05T23:06:00.3363635+02:00 0HLIQUKTH6TDN:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Events] AS [x]
+        WHERE [x].[Id] = @__id_0)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:06:00.3566432+02:00 0HLIQUKTH6TDN:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[End], [e].[Name], [e].[Place], [e].[PricePerTicket], [e].[Start], [e].[TotalTickets]
+FROM [Events] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-12-05T23:06:00.3654959+02:00 0HLIQUKTH6TDN:00000003 [INF] Executed action method "Eventures.Controllers.EventController.Details (Eventures)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 40.22ms. (50a9e262)
+2018-12-05T23:06:00.3797306+02:00 0HLIQUKTH6TDN:00000003 [INF] Executing ViewResult, running view "Details". (c83d0e25)
+2018-12-05T23:06:00.3919881+02:00 0HLIQUKTH6TDN:00000003 [INF] Executed ViewResult - view "Details" executed in 23.3395ms. (f66409e9)
+2018-12-05T23:06:00.4003232+02:00 0HLIQUKTH6TDN:00000003 [INF] Executed action "Eventures.Controllers.EventController.Details (Eventures)" in 72.3577ms (afa2e885)
+2018-12-05T23:06:00.4076137+02:00 0HLIQUKTH6TDN:00000003 [INF] Request finished in 129.8162ms 200 text/html; charset=utf-8 (791a596a)
+2018-12-05T23:07:05.7958660+02:00 0HLIQUKTH6TDO:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44379/Identity/Account/Logout?returnUrl=%2F application/x-www-form-urlencoded 225 (ca22a1cb)
+2018-12-05T23:07:05.7996186+02:00 0HLIQUKTH6TDO:00000001 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:07:05.8139580+02:00 0HLIQUKTH6TDO:00000001 [INF] Executed DbCommand ("10"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:07:05.8231220+02:00 0HLIQUKTH6TDO:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:07:05.8301023+02:00 0HLIQUKTH6TDO:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:07:05.8717499+02:00 0HLIQUKTH6TDO:00000001 [INF] Route matched with "{page = \"/Account/Logout\", area = \"Identity\", action = \"\", controller = \"\"}". Executing action "/Account/Logout" (a44c0341)
+2018-12-05T23:07:05.8820590+02:00 0HLIQUKTH6TDO:00000001 [INF] Executing handler method "OnPost" with arguments (["/"]) - ModelState is Valid (d4ff7456)
+2018-12-05T23:07:05.8908052+02:00 0HLIQUKTH6TDO:00000001 [INF] AuthenticationScheme: "Identity.Application" signed out. (d3f50c8d)
+2018-12-05T23:07:05.8946596+02:00 0HLIQUKTH6TDO:00000001 [INF] AuthenticationScheme: "Identity.External" signed out. (d3f50c8d)
+2018-12-05T23:07:05.8975293+02:00 0HLIQUKTH6TDO:00000001 [INF] AuthenticationScheme: "Identity.TwoFactorUserId" signed out. (d3f50c8d)
+2018-12-05T23:07:05.9006781+02:00 0HLIQUKTH6TDO:00000001 [INF] User logged out. (f9c27106)
+2018-12-05T23:07:05.9046060+02:00 0HLIQUKTH6TDO:00000001 [INF] Executing LocalRedirectResult, redirecting to "/". (cac120e6)
+2018-12-05T23:07:05.9091456+02:00 0HLIQUKTH6TDO:00000001 [INF] Executed action "/Account/Logout" in 32.8414ms (afa2e885)
+2018-12-05T23:07:05.9154742+02:00 0HLIQUKTH6TDO:00000001 [INF] Request finished in 123.4753ms 302  (791a596a)
+2018-12-05T23:07:05.9419519+02:00 0HLIQUKTH6TDO:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44379/   (ca22a1cb)
+2018-12-05T23:07:05.9505838+02:00 0HLIQUKTH6TDO:00000002 [INF] Entity Framework Core "2.1.4-rtm-31024" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-12-05T23:07:05.9661421+02:00 0HLIQUKTH6TDO:00000002 [INF] Executed DbCommand ("9"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:07:05.9814627+02:00 0HLIQUKTH6TDO:00000002 [INF] Executed DbCommand ("10"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2018-12-05T23:07:05.9931655+02:00 0HLIQUKTH6TDO:00000002 [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [x]
+        WHERE ([x].[Discriminator] = N'User') AND ([x].[UserName] = N'Admin@Admin.Admin'))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-12-05T23:07:06.0008060+02:00 0HLIQUKTH6TDO:00000002 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Eventures.Controllers.HomeController.Index (Eventures)" (a44c0341)
+2018-12-05T23:07:06.0162395+02:00 0HLIQUKTH6TDO:00000002 [INF] Executing action method "Eventures.Controllers.HomeController.Index (Eventures)" - Validation state: Valid (dad538d7)
+2018-12-05T23:07:06.0214346+02:00 0HLIQUKTH6TDO:00000002 [INF] Executed action method "Eventures.Controllers.HomeController.Index (Eventures)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.0173ms. (50a9e262)
+2018-12-05T23:07:06.0248460+02:00 0HLIQUKTH6TDO:00000002 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-12-05T23:07:06.0320337+02:00 0HLIQUKTH6TDO:00000002 [INF] Executed ViewResult - view "Index" executed in 4.3965ms. (f66409e9)
+2018-12-05T23:07:06.0803815+02:00 0HLIQUKTH6TDO:00000002 [INF] Executed action "Eventures.Controllers.HomeController.Index (Eventures)" in 31.2443ms (afa2e885)
+2018-12-05T23:07:06.0988278+02:00 0HLIQUKTH6TDO:00000002 [INF] Request finished in 153.2514ms 200 text/html; charset=utf-8 (791a596a)

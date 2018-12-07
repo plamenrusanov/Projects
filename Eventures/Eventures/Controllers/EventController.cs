@@ -33,7 +33,17 @@ namespace Eventures.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateEventViewModel model)
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Create(
+            [FromForm]
+            CreateEventViewModel model,
+            [FromHeader]
+            string connection,
+            [FromServices]
+            ILogger<EventController> logger,
+           // [ModelBinder(typeof())]
+            string allMyHeaders
+            )
         {
             if (this.ModelState.IsValid)
             {

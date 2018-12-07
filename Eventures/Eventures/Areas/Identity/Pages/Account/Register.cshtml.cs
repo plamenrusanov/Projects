@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace Eventures.Areas.Identity.Pages.Account
 {
@@ -20,17 +23,20 @@ namespace Eventures.Areas.Identity.Pages.Account
         private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IHostingEnvironment environment;
 
         public RegisterModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IHostingEnvironment environment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            this.environment = environment;
         }
 
         [BindProperty]
@@ -75,6 +81,14 @@ namespace Eventures.Areas.Identity.Pages.Account
             [MinLength(5)]
             [Display(Name = "UCN")]
             public string UCN { get; set; }
+
+            //[Required]
+            [DataType(DataType.Upload)]
+            public IFormFile Image { get; set; }
+
+            //[Required]
+            //[DataType(DataType.Upload)]
+            //public IEnumerable<IFormFile> Images { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -90,6 +104,11 @@ namespace Eventures.Areas.Identity.Pages.Account
                 var user = new User { UserName = Input.Username, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, UniqueCitizenNumber = Input.UCN };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 await _userManager.AddToRoleAsync(user, "User");
+                var fileName = this.environment.WebRootPath + "/files/" + $"{user.UserName}.jpg";
+                using (var fileStrieam = new FileStream(fileName, FileMode.Create))
+                {
+                    await Input.Image.CopyToAsync(fileStrieam);
+                }
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
