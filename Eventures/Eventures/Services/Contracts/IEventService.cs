@@ -17,5 +17,7 @@ namespace Eventures.Services.Contracts
         string EditEvent(EditEventViewModel model);
 
         string DeleteEvent(string id);
+
+        string BuyTicets(BuyTicketViewModel model);
     }
 }

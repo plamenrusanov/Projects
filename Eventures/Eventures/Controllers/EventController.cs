@@ -1,5 +1,8 @@
-﻿using Eventures.Models;
+﻿using Eventures.Data.Models;
+using Eventures.Models;
 using Eventures.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,15 +12,18 @@ using System.Threading.Tasks;
 
 namespace Eventures.Controllers
 {
+    [Authorize(Roles = "Admin, User")]
     public class EventController : Controller
     {
         private readonly IEventService eventService;
         private readonly ILogger<EventController> logger;
+        private readonly UserManager<User> userManager;
 
-        public EventController(IEventService eventService, ILogger<EventController> logger)
+        public EventController(IEventService eventService, ILogger<EventController> logger, UserManager<User> userManager)
         {
             this.eventService = eventService;
             this.logger = logger;
+            this.userManager = userManager;
         }
 
         public IActionResult AllEvents()
@@ -34,7 +40,7 @@ namespace Eventures.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Create(
+        public async Task<IActionResult> Create(
             [FromForm]
             CreateEventViewModel model,
             [FromHeader]
@@ -45,13 +51,19 @@ namespace Eventures.Controllers
             string allMyHeaders
             )
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                this.eventService.Create(model);
-                this.logger.LogInformation("Event created: " + model.Name, model);
-                return Redirect("AllEvents");
+                return this.View(model);
             }
-            return this.View(model);
+
+            var user = await this.userManager.GetUserAsync(User);
+            if (!await this.userManager.IsInRoleAsync(user, "Admin"))
+            {
+                return this.Unauthorized();
+            }
+            this.eventService.Create(model);
+            this.logger.LogInformation("Event created: " + model.Name, model);
+            return Redirect("AllEvents");
         }
 
         [HttpGet]
@@ -63,7 +75,7 @@ namespace Eventures.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(EditEventViewModel model)
+        public IActionResult Edit([FromForm]EditEventViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +104,19 @@ namespace Eventures.Controllers
         public IActionResult OnDelete(string id)
         {
             string result = eventService.DeleteEvent(id);
+
+            return Redirect("/Event/AllEvents");
+        }
+
+
+       // [HttpPost]
+        public IActionResult Buy([FromForm]BuyTicketViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                //TODO
+            }
+            string result = eventService.BuyTicets(model);
 
             return Redirect("/Event/AllEvents");
         }

@@ -1,0 +1,14 @@
+﻿@model BuyTicketViewModel
+
+<form asp-action="Buy" method="post" class="form-inline ">
+
+    <input name="EventId" value="@Model.EventId" style="display:none" />
+
+    <label asp-for="Quantity"></label>
+    <input asp-for="Quantity" class="form-control" />
+    <span asp-validation-for="Quantity" class="text-danger"></span>
+
+
+    <button type="submit" class="btn btn-secondary btn-sm active bg-event">Buy</button>
+
+</form>

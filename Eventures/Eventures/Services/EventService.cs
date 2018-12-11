@@ -16,6 +16,25 @@ namespace Eventures.Services
         {
             this.context = context;
         }
+
+        public string BuyTicets(BuyTicketViewModel model )
+        {
+            var ev = this.context.Events.FirstOrDefault(x => x.Id == model.EventId);
+            if (ev == null)
+            {
+                return "Тhe event does not exist";
+            }
+
+            if (ev.TotalTickets < model.Quantity)
+            {
+                return $"Free tickets are limited to {ev.TotalTickets}";
+            }
+            ev.TotalTickets -= model.Quantity;
+            this.context.SaveChanges();
+
+            return $"Successfully bought {model.Quantity} tickets.";
+        }
+
         public string Create(CreateEventViewModel model)
         {
             var even = new Event()

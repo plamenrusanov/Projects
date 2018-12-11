@@ -34,10 +34,10 @@ namespace Eventures.Middleware
             {
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
-
-            if (!dbContext.Users.Any(x => x.UserName == "Admin@Admin.Admin"))
+            User user = await userManager.FindByEmailAsync("Admin@Admin.Admin");
+            if (user == null)
             {
-                var user = new User
+                user = new User
                 {
                     UserName = "Admin@Admin.Admin",
                     Email = "Admin@Admin.Admin",
