@@ -27,3 +27,13 @@
 .dropdown-menu{
     min-width:100px;
 }
+select {
+    font-size: 20px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+}
+.h6-style {
+    margin-top: 28px;
+    margin-bottom: 10px;
+    text-align:left;
+}

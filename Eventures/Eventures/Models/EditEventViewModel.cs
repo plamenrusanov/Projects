@@ -19,7 +19,6 @@ namespace Eventures.Models
         public string Place { get; set; }
 
         [Required]
-        [Timestamp]
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }

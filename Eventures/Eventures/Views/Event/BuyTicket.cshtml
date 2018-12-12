@@ -1,0 +1,55 @@
+﻿@model Eventures.Models.BuyTicketViewModel
+
+@{
+    ViewData["Title"] = "BuyTicket";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<hr class="hr-event" />
+<form asp-action="BuyTicket" method="post">
+    <input asp-for="@Model.EventId" type="hidden" />
+    <input asp-for="@Model.Available" type="hidden" />
+    <input asp-for="@Model.RegularPrice" type="hidden" />
+    <input asp-for="@Model.When" type="hidden" />
+    <input asp-for="@Model.Where" type="hidden" />
+
+    <div class="row d-flex justify-content-around">
+        <div class="col-sm-6 flex-column bg-event">
+            <h2 class="text-center">Къде</h2>
+            <h3 class="text-center">@Model.Where</h3>
+        </div>
+        <div class="col-sm-6 flex-column" style="background-color:#f06040">
+            <h2 class="text-center">Кога</h2>
+            <h3 class="text-center">@Model.When</h3>
+        </div>
+    </div>
+    <hr class="hr-event" />
+    <div class="row text-center">
+        <h2 class="col-sm-3">Adults</h2>
+        <h2 class="col-sm-4">Price&nbsp;&nbsp;&nbsp;&nbsp;$@Model.RegularPrice</h2>
+        <div class="col-sm-2">
+            <select asp-for="AdultQuantity"
+                    asp-items="@(Model.Quantity)">
+                <option>0</option>
+            </select>
+        </div>
+        <h6 class="col-sm-3 h6-style">@Model.Available Available</h6>
+    </div>
+    <hr class="hr-event" />
+    <div class="row text-center">
+        <h2 class="col-sm-3">Children</h2>
+        <h2 class="col-sm-4">Price&nbsp;&nbsp;&nbsp;&nbsp;$@(Model.RegularPrice / 2)</h2>
+        <div class="col-sm-2">
+            <select asp-for="ChildQuantity"
+                    asp-items="@(Model.Quantity)">
+                <option>0</option>
+            </select>
+        </div>
+        <h6 class="col-sm-3 h6-style">@Model.Available Available</h6>
+    </div>
+    <hr class="hr-event" />
+    <div class="form-group  text-center">
+        <input type="submit" value="Buy" class="btn btn-secondary btn-lg active bg-event" />
+    </div>
+</form>
+

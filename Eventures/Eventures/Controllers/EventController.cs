@@ -108,13 +108,20 @@ namespace Eventures.Controllers
             return Redirect("/Event/AllEvents");
         }
 
+        [HttpGet]
+        public IActionResult BuyTicket(string eventId)
+        {
+            var model = this.eventService.CreateBuyTicketViewModel(eventId);
 
-       // [HttpPost]
-        public IActionResult Buy([FromForm]BuyTicketViewModel model)
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public IActionResult BuyTicket(BuyTicketViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                //TODO
+                return this.View(model);
             }
             string result = eventService.BuyTicets(model);
 

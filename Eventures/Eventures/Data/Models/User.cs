@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Eventures.ValidationAttributes;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,12 @@ namespace Eventures.Data.Models
 
         public string UniqueCitizenNumber { get; set; }
 
+        [MinAge(18, ErrorMessage = "Min Age = {0}")]
+        public DateTime? DayOfBirth { get; set; }
+
         //public IFormFile Image { get; set; }
 
-        public ICollection<IdentityUserRole<string>> IdentityUserRoles;
+        public ICollection<Ticket> Tickets { get; set; }
 
-        public User()
-        {
-            IdentityUserRoles = new HashSet<IdentityUserRole<string>>();
-        }
     }
 }
