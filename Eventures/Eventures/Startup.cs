@@ -12,6 +12,7 @@ using Eventures.Middleware;
 using Eventures.Services.Contracts;
 using Eventures.Services;
 using Microsoft.Extensions.Logging;
+using Eventures.Data.Common;
 
 namespace Eventures
 {
@@ -52,16 +53,34 @@ namespace Eventures
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
             services.AddScoped<IUserClaimsPrincipalFactory<User>, UserClaimsPrincipalFactory<User, IdentityRole>>();
-
+            services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+            });
+            services.AddHttpsRedirection(options => 
+            {
+                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                options.HttpsPort = 44379;
+            });
             services.AddMvc(opt =>
+
                     opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())
                    // opt.ModelBinderProviders.Insert(0,CustomModelBinder()
                     )
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSession(opt =>
+            {
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.Name = "SID";
+                opt.IdleTimeout = new System.TimeSpan(0, 2, 0);
+            });
+            //Application services
             services.AddDbContext<ApplicationDbContext>();
             services.AddTransient<IHashService, HashService>();
             services.AddTransient<IEventService, EventService>();
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             //services.AddSingleton<ILogger, MyFileLogger>();
+          
         
         }
 
@@ -81,11 +100,12 @@ namespace Eventures
             }
             
             app.UseHttpsRedirection();
+            app.UseResponseCompression();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseMiddleware<SeedRolesMiddleware>();
             app.UseAuthentication();
-           
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 

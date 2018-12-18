@@ -5,11 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Eventures.Models;
+using Eventures.Data.Models;
+using Eventures.Data.Common;
 
 namespace Eventures.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IRepository<Event> repository;
+
+        public HomeController(IRepository<Event> repository)
+        {
+            this.repository = repository;
+        }
         public IActionResult Index()
         {
             return View();
@@ -24,7 +32,7 @@ namespace Eventures.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = $"My application has {this.repository.All().Count()} events.";
 
             return View();
         }
