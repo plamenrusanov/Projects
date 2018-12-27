@@ -13,6 +13,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Eventures.Cloud;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
 
 namespace Eventures.Areas.Identity.Pages.Account
 {
@@ -24,19 +27,22 @@ namespace Eventures.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly IHostingEnvironment environment;
+        private readonly ConnectToCloud cloud;
 
         public RegisterModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IHostingEnvironment environment)
+            IHostingEnvironment environment,
+            ConnectToCloud cloud)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             this.environment = environment;
+            this.cloud = cloud;
         }
 
         [BindProperty]
@@ -101,14 +107,20 @@ namespace Eventures.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Username, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, UniqueCitizenNumber = Input.UCN };
+                var ImageName = UploadImageToCloud();
+                var user = new User { UserName = Input.Username,
+                                      Email = Input.Email,
+                                      FirstName = Input.FirstName,
+                                      LastName = Input.LastName,
+                                      UniqueCitizenNumber = Input.UCN,
+                                      ImageUrl = ImageName.Result };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 await _userManager.AddToRoleAsync(user, "User");
-                var fileName = this.environment.WebRootPath + "/files/" + $"{user.UserName}.jpg";
-                using (var fileStrieam = new FileStream(fileName, FileMode.Create))
-                {
-                    await Input.Image.CopyToAsync(fileStrieam);
-                }
+                //var fileName = this.environment.WebRootPath + "/files/" + $"{user.UserName}.jpg";
+                //using (var fileStrieam = new FileStream(fileName, FileMode.Create))
+                //{
+                //    await Input.Image.CopyToAsync(fileStrieam);
+                //}
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -134,6 +146,18 @@ namespace Eventures.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private async Task<string> UploadImageToCloud()
+        {
+            Stream stream = Input.Image.OpenReadStream();
+            var ImageName = Guid.NewGuid().ToString();
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(ImageName, stream),
+            };
+            var uploadResult = cloud.cloudinary.Upload(uploadParams);
+            return await Task.FromResult<string>(uploadResult.Uri.AbsolutePath);
         }
     }
 }

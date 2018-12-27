@@ -13,6 +13,8 @@ using Eventures.Services.Contracts;
 using Eventures.Services;
 using Microsoft.Extensions.Logging;
 using Eventures.Data.Common;
+using AutoMapper;
+using Eventures.Cloud;
 
 namespace Eventures
 {
@@ -74,11 +76,13 @@ namespace Eventures
                 opt.Cookie.Name = "SID";
                 opt.IdleTimeout = new System.TimeSpan(0, 2, 0);
             });
+            services.AddAutoMapper();
             //Application services
             services.AddDbContext<ApplicationDbContext>();
             services.AddTransient<IHashService, HashService>();
             services.AddTransient<IEventService, EventService>();
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+            services.AddScoped(typeof(ConnectToCloud));
             //services.AddSingleton<ILogger, MyFileLogger>();
           
         
@@ -106,6 +110,7 @@ namespace Eventures
             app.UseMiddleware<SeedRolesMiddleware>();
             app.UseAuthentication();
             app.UseSession();
+
             app.UseMvc(routes =>
             {
                 

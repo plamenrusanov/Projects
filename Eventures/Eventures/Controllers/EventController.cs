@@ -1,4 +1,5 @@
-﻿using Eventures.Data.Models;
+﻿using AutoMapper;
+using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +20,9 @@ namespace Eventures.Controllers
         private readonly ILogger<EventController> logger;
         private readonly UserManager<User> userManager;
 
-        public EventController(IEventService eventService, ILogger<EventController> logger, UserManager<User> userManager)
+        public EventController(IEventService eventService,
+                               ILogger<EventController> logger, 
+                               UserManager<User> userManager)
         {
             this.eventService = eventService;
             this.logger = logger;

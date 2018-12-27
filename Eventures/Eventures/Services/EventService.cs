@@ -1,4 +1,5 @@
-﻿using Eventures.Data;
+﻿using AutoMapper;
+using Eventures.Data;
 using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
@@ -12,10 +13,13 @@ namespace Eventures.Services
     public class EventService : IEventService
     {
         private readonly ApplicationDbContext context;
+        private readonly IMapper mapper;
 
-        public EventService(ApplicationDbContext context)
+        public EventService(ApplicationDbContext context,
+                            IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         public string BuyTicets([FromForm]BuyTicketViewModel model )
@@ -40,8 +44,9 @@ namespace Eventures.Services
 
         public string Create(CreateEventViewModel model)
         {
+           // var mappedEvent = mapper.Map(model, typeof(CreateEventViewModel), typeof(Event));
             var even = new Event()
-            {
+            {               
                 Name = model.Name,
                 Place = model.Place,
                 PricePerTicket = model.PricePerTicket,
@@ -61,6 +66,8 @@ namespace Eventures.Services
                 return null;
             }
             var ev = this.context.Events.Find(eventId);
+            
+            var mappedEvent = mapper.Map<BuyTicketViewModel>(ev);
             var model = new BuyTicketViewModel
             {
                 Where = ev.Place,
