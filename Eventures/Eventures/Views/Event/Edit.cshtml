@@ -10,7 +10,7 @@
 <div class="row">
     <div class="center-block w-60 text-center">
         <hr class="hr-event" />
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
 
             <input asp-for="Id" type="hidden" />

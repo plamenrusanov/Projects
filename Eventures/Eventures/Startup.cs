@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Eventures.Data.Common;
 using AutoMapper;
 using Eventures.Cloud;
+using Eventures.AutoMapper;
 
 namespace Eventures
 {
@@ -76,13 +77,21 @@ namespace Eventures
                 opt.Cookie.Name = "SID";
                 opt.IdleTimeout = new System.TimeSpan(0, 2, 0);
             });
-            services.AddAutoMapper();
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             //Application services
             services.AddDbContext<ApplicationDbContext>();
             services.AddTransient<IHashService, HashService>();
             services.AddTransient<IEventService, EventService>();
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped(typeof(ConnectToCloud));
+            
             //services.AddSingleton<ILogger, MyFileLogger>();
           
         

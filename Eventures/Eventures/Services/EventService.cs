@@ -4,7 +4,6 @@ using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,16 +43,7 @@ namespace Eventures.Services
 
         public string Create(CreateEventViewModel model)
         {
-           // var mappedEvent = mapper.Map(model, typeof(CreateEventViewModel), typeof(Event));
-            var even = new Event()
-            {               
-                Name = model.Name,
-                Place = model.Place,
-                PricePerTicket = model.PricePerTicket,
-                Start = model.Start,
-                End = model.End,
-                TotalTickets = model.TotalTickets
-            };
+            var even = mapper.Map<Event>(model);          
             this.context.Events.Add(even);
             this.context.SaveChanges();
             return $"Successfully create event {model.Name}";
@@ -65,17 +55,9 @@ namespace Eventures.Services
             {
                 return null;
             }
-            var ev = this.context.Events.Find(eventId);
-            
+            var ev = this.context.Events.Find(eventId);            
             var mappedEvent = mapper.Map<BuyTicketViewModel>(ev);
-            var model = new BuyTicketViewModel
-            {
-                Where = ev.Place,
-                When = ev.Start,
-                RegularPrice = ev.PricePerTicket,
-                Available = ev.TotalTickets
-            };
-            return model;
+            return mappedEvent;
         }
 
         public string DeleteEvent(string id)
@@ -93,15 +75,7 @@ namespace Eventures.Services
         public string EditEvent(EditEventViewModel model)
         {
             var ev = this.context.Events.Find(model.Id);
-            
-            {
-               ev.Name = model.Name;
-               ev.Start = model.Start;
-               ev.End = model.End;
-               ev.Place = model.Place;
-               ev.TotalTickets = model.TotalTickets;
-               ev.PricePerTicket = model.PricePerTicket;
-            }
+            mapper.Map(model, ev);
             this.context.SaveChanges();
             return $"Successfully edit event {model.Name}";
         }
@@ -109,13 +83,7 @@ namespace Eventures.Services
         public IEnumerable<EventViewModel> GetAllEvents()
         {
             return this.context.Events
-                .Select(x => new EventViewModel() {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Place = x.Place,
-                    Start = x.Start,
-                    End = x.End
-                })
+                .Select(x => mapper.Map<EventViewModel>(x))
                 .OrderBy(x => x.Start)
                 .ToList();
         }
@@ -126,20 +94,8 @@ namespace Eventures.Services
             {
                 return null;
             }
-
             var ev = this.context.Events.Find(id);
-
-            return new EditEventViewModel()
-            {
-                Id = ev.Id,
-                Name = ev.Name,
-                Start = ev.Start,
-                End = ev.End,
-                Place = ev.Place,
-                TotalTickets = ev.TotalTickets,
-                PricePerTicket = ev.PricePerTicket
-            };
-                
+            return mapper.Map<EditEventViewModel>(ev);          
         }
 
         private bool Exist(string id)
