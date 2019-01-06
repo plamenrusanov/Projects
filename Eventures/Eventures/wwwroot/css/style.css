@@ -37,3 +37,6 @@ select {
     margin-bottom: 10px;
     text-align:left;
 }
+.p-10{
+    padding:8px;
+}

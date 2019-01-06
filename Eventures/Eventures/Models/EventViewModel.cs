@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Eventures.ValidationAttributes;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Eventures.Models
 {
     public class EventViewModel
     {
+        [Required]
+        [IsValidEventId]
         public string Id { get; set; }
 
         public string Name { get; set; }

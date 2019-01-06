@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eventures.Data
 {
-    public class DbRepository<TEntity> : IRepository<TEntity>, IDisposable
+    public class DbRepository<TEntity> : IRepository<TEntity>//, IDisposable
         where TEntity : class
     {
         private readonly ApplicationDbContext context;
@@ -32,10 +32,10 @@ namespace Eventures.Data
             this.dbSet.Remove(entity);
         }
 
-        public void Dispose()
-        {
-            this.context.Dispose();
-        }
+        ////public void Dispose()
+        //{
+        //    this.context.Dispose();
+        //}
 
         public Task<int> SaveChangesAsync()
         {

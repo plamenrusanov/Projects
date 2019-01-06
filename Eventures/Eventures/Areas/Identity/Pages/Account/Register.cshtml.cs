@@ -53,7 +53,8 @@ namespace Eventures.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [MinLength(5)]
+            [MinLength(3)]
+            [RegularExpression(@"[a-zA-z1-9_\-*.~]+")]
             [Display(Name = "Username")]
             public string Username { get; set; }
 
@@ -63,7 +64,8 @@ namespace Eventures.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+           // [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [MinLength(5)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -84,11 +86,11 @@ namespace Eventures.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
-            [MinLength(5)]
+            [RegularExpression(@"^[0-9]{10}$")]
             [Display(Name = "UCN")]
             public string UCN { get; set; }
 
-            //[Required]
+            [Required]
             [DataType(DataType.Upload)]
             public IFormFile Image { get; set; }
 

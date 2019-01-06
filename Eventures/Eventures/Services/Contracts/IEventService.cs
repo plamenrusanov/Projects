@@ -18,8 +18,10 @@ namespace Eventures.Services.Contracts
 
         string DeleteEvent(string id);
 
-        string BuyTicets(BuyTicketViewModel model);
+        string BuyTickets(BuyTicketViewModel model);
 
         BuyTicketViewModel CreateBuyTicketViewModel(string eventId);
+
+        bool Exist(string id);
     }
 }

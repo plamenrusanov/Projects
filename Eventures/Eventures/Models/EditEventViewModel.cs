@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eventures.ValidationAttributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Eventures.Models
     public class EditEventViewModel
     {
         [Required]
+        [IsValidEventId]
         public string Id { get; set; }
 
         [Required]
@@ -23,6 +25,7 @@ namespace Eventures.Models
 
         public DateTime End { get; set; }
 
+        [Range(0, 1000)]
         public int TotalTickets { get; set; }
 
         public decimal PricePerTicket { get; set; }

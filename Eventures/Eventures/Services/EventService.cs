@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Eventures.Data;
+using Eventures.Data.Common;
 using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
@@ -11,19 +12,19 @@ namespace Eventures.Services
 {
     public class EventService : IEventService
     {
-        private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
+        private readonly IRepository<Event> repository;
 
-        public EventService(ApplicationDbContext context,
-                            IMapper mapper)
+        public EventService(IMapper mapper,
+                            IRepository<Event> repository)
         {
-            this.context = context;
             this.mapper = mapper;
+            this.repository = repository;
         }
 
-        public string BuyTicets([FromForm]BuyTicketViewModel model )
+        public string BuyTickets([FromForm]BuyTicketViewModel model )
         {
-            var ev = this.context.Events.FirstOrDefault(x => x.Id == model.EventId);
+            var ev = this.FindEventById(model.EventId);
             if (ev == null)
             {
                 return "Тhe event does not exist";
@@ -35,7 +36,7 @@ namespace Eventures.Services
 
             var tickets = model.AdultQuantity + model.ChildQuantity;
             ev.TotalTickets -= tickets;
-            this.context.SaveChanges();
+            this.repository.SaveChangesAsync();
 
             return $"Successfully bought {tickets} tickets.";
             
@@ -44,8 +45,8 @@ namespace Eventures.Services
         public string Create(CreateEventViewModel model)
         {
             var even = mapper.Map<Event>(model);          
-            this.context.Events.Add(even);
-            this.context.SaveChanges();
+            this.repository.AddAsync(even);
+            this.repository.SaveChangesAsync();
             return $"Successfully create event {model.Name}";
         }
 
@@ -55,7 +56,7 @@ namespace Eventures.Services
             {
                 return null;
             }
-            var ev = this.context.Events.Find(eventId);            
+            var ev = this.FindEventById(eventId);  
             var mappedEvent = mapper.Map<BuyTicketViewModel>(ev);
             return mappedEvent;
         }
@@ -66,23 +67,23 @@ namespace Eventures.Services
             {
                 return null;
             }
-            var ev = this.context.Events.Find(id);
-            this.context.Events.Remove(ev);
-            this.context.SaveChanges();
+            var ev = this.FindEventById(id);
+            this.repository.Delete(ev);
+            this.repository.SaveChangesAsync();
             return $"Successfully delete event {ev.Name}";
         }
 
         public string EditEvent(EditEventViewModel model)
         {
-            var ev = this.context.Events.Find(model.Id);
+            var ev = this.FindEventById(model.Id);
             mapper.Map(model, ev);
-            this.context.SaveChanges();
+            this.repository.SaveChangesAsync();
             return $"Successfully edit event {model.Name}";
         }
 
         public IEnumerable<EventViewModel> GetAllEvents()
         {
-            return this.context.Events
+            return this.repository.All()
                 .Select(x => mapper.Map<EventViewModel>(x))
                 .OrderBy(x => x.Start)
                 .ToList();
@@ -94,13 +95,18 @@ namespace Eventures.Services
             {
                 return null;
             }
-            var ev = this.context.Events.Find(id);
+            var ev = this.FindEventById(id);
             return mapper.Map<EditEventViewModel>(ev);          
         }
 
-        private bool Exist(string id)
+        public bool Exist(string id)
         {
-            return this.context.Events.Any(x => x.Id == id);
+            return this.repository.All().Any(x => x.Id == id);
+        }
+
+        private Event FindEventById(string id)
+        {
+            return this.repository.All().FirstOrDefault(x => x.Id == id);
         }
     }
 }

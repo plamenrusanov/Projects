@@ -2,6 +2,7 @@
 using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
+using Eventures.ValidationAttributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -70,63 +71,78 @@ namespace Eventures.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(string id)
+        public IActionResult Edit([IsValidEventId]string id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction("AllEvents");
+            }
             var model = eventService.GetEvent(id);
-
             return this.View(model);
         }
 
         [HttpPost]
         public IActionResult Edit([FromForm]EditEventViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                eventService.EditEvent(model);
-                return Redirect("/Event/AllEvents");
+                return this.View(model);               
             }
-            return this.View(model);
+            eventService.EditEvent(model);
+            return RedirectToAction("AllEvents");
         }
 
-        public IActionResult Details(string id)
+        public IActionResult Details([IsValidEventId]string id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction("AllEvents");
+            }
             var model = eventService.GetEvent(id);
-
             return this.View(model);
         }
 
 
-        public IActionResult Delete(string id)
+        public IActionResult Delete([IsValidEventId]string id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction("AllEvents");
+            }
             var model = eventService.GetEvent(id);
-
             return this.View(model);
         }
 
 
-        public IActionResult OnDelete(string id)
+        public IActionResult OnDelete([IsValidEventId]string id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction("AllEvents");
+            }
             string result = eventService.DeleteEvent(id);
-
             return Redirect("/Event/AllEvents");
         }
 
         [HttpGet]
-        public IActionResult BuyTicket(string eventId)
+        public IActionResult BuyTicket([IsValidEventId]string eventId)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction("AllEvents");
+            }
             var model = this.eventService.CreateBuyTicketViewModel(eventId);
-
             return this.View(model);
         }
 
         [HttpPost]
         public IActionResult BuyTicket(BuyTicketViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
-            string result = eventService.BuyTicets(model);
+            string result = eventService.BuyTickets(model);
 
             return Redirect("/Event/AllEvents");
         }

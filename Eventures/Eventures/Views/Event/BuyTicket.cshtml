@@ -7,6 +7,7 @@
 <h1 class="text-center">@ViewData["Title"]</h1>
 <hr class="hr-event" />
 <form asp-action="BuyTicket" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <input asp-for="@Model.EventId" type="hidden" />
     <input asp-for="@Model.Available" type="hidden" />
     <input asp-for="@Model.RegularPrice" type="hidden" />

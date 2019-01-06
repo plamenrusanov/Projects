@@ -1,5 +1,5 @@
 ﻿@model string
-
+<div asp-validation-summary="All" class="text-danger"></div>
 <a asp-controller="Event" asp-action="Edit" asp-route-id="@Model" class="btn btn-secondary btn-sm active bg-event">Edit</a>
 <a asp-action="Details" asp-route-id="@Model" class="btn btn-secondary btn-sm active bg-event"> Details </a>
 <a asp-action="Delete" asp-route-id="@Model" class="btn btn-secondary btn-sm active bg-event"> Delete </a>

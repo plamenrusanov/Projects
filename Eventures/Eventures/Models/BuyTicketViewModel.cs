@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Eventures.ValidationAttributes;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,8 +8,10 @@ namespace Eventures.Models
 {
     public class BuyTicketViewModel : IValidatableObject
     {
-
+        [Required]
+        [IsValidEventId]
         public string EventId { get; set; }
+
 
         public string Where { get; set; }
 

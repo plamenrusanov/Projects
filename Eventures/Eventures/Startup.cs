@@ -66,11 +66,8 @@ namespace Eventures
                 options.HttpsPort = 44379;
             });
             services.AddMvc(opt =>
-
-                    opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())
-                   // opt.ModelBinderProviders.Insert(0,CustomModelBinder()
-                    )
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                            opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSession(opt =>
             {
                 opt.Cookie.HttpOnly = true;
@@ -86,7 +83,6 @@ namespace Eventures
             services.AddSingleton(mapper);
 
             //Application services
-            services.AddDbContext<ApplicationDbContext>();
             services.AddTransient<IHashService, HashService>();
             services.AddTransient<IEventService, EventService>();
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
@@ -121,8 +117,7 @@ namespace Eventures
             app.UseSession();
 
             app.UseMvc(routes =>
-            {
-                
+            {                
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
