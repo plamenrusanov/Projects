@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Eventures.Data.Models;
+﻿using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
 using Eventures.ValidationAttributes;
@@ -7,9 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Eventures.Controllers
@@ -43,17 +40,8 @@ namespace Eventures.Controllers
         }
 
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(
-            [FromForm]
-            CreateEventViewModel model,
-            [FromHeader]
-            string connection,
-            [FromServices]
-            ILogger<EventController> logger,
-           // [ModelBinder(typeof())]
-            string allMyHeaders
-            )
+            [FromForm] CreateEventViewModel model )
         {
             if (!this.ModelState.IsValid)
             {
@@ -136,17 +124,21 @@ namespace Eventures.Controllers
         }
 
         [HttpPost]
-        public IActionResult BuyTicket(BuyTicketViewModel model)
+        public IActionResult BuyTicket([FromForm]BuyTicketViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
-            }
+            }    
             string result = eventService.BuyTickets(model);
-
             return Redirect("/Event/AllEvents");
         }
 
-
+        public int GetAvailable(string child, string adult, string available)
+        {
+            var quantity = int.Parse(child) + int.Parse(adult);
+            var av = int.Parse(available) - quantity;
+            return av;
+        }
     }
 }

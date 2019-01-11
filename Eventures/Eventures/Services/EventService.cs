@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using Eventures.Data;
 using Eventures.Data.Common;
 using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +20,7 @@ namespace Eventures.Services
             this.repository = repository;
         }
 
-        public string BuyTickets([FromForm]BuyTicketViewModel model )
+        public string BuyTickets(BuyTicketViewModel model )
         {
             var ev = this.FindEventById(model.EventId);
             if (ev == null)

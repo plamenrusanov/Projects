@@ -30,11 +30,11 @@
         <h2 class="col-sm-4">Price&nbsp;&nbsp;&nbsp;&nbsp;$@Model.RegularPrice</h2>
         <div class="col-sm-2">
             <select asp-for="AdultQuantity"
-                    asp-items="@(Model.Quantity)">
+                    asp-items="@(Model.Quantity)" id="adult">
                 <option>0</option>
             </select>
         </div>
-        <h6 class="col-sm-3 h6-style">@Model.Available Available</h6>
+        <h6 class="col-sm-3 h6-style" id="av">@Model.Available Available</h6>
     </div>
     <hr class="hr-event" />
     <div class="row text-center">
@@ -42,15 +42,47 @@
         <h2 class="col-sm-4">Price&nbsp;&nbsp;&nbsp;&nbsp;$@(Model.RegularPrice / 2)</h2>
         <div class="col-sm-2">
             <select asp-for="ChildQuantity"
-                    asp-items="@(Model.Quantity)">
+                    asp-items="@(Model.Quantity)" id="child">
                 <option>0</option>
             </select>
         </div>
-        <h6 class="col-sm-3 h6-style">@Model.Available Available</h6>
+        <h6 class="col-sm-3 h6-style" id="avi">@Model.Available Available</h6>
+        <div id="av"></div>
     </div>
     <hr class="hr-event" />
     <div class="form-group  text-center">
         <input type="submit" value="Buy" class="btn btn-secondary btn-lg active bg-event" />
     </div>
 </form>
+
+@section Scripts{
+    <script>
+        $("#child").click(function () {
+            var child = $("#child").val();
+            var adult = $("#adult").val();
+            $.ajax({
+                url: "GetAvailable",
+                data: { child: child, adult: adult, available: @Model.Available},
+                success: function (responce) {
+                    $("#av").html(responce + " Available");
+                    $("#avi").html(responce + " Available");
+                }
+            });
+        });
+    </script>
+    <script>
+        $("#adult").click(function () {
+            var child = $("#child").val();
+            var adult = $("#adult").val();
+            $.ajax({
+                url: "GetAvailable",
+                data: { child: child, adult: adult, available: @Model.Available},
+                success: function (responce) {
+                    $("#av").html(responce + " Available");
+                    $("#avi").html(responce + " Available");
+                }
+            });
+        });    
+    </script>
+}
 
