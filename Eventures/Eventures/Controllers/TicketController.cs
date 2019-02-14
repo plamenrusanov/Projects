@@ -45,5 +45,12 @@ namespace Eventures.Controllers
             string result = this.ticketService.BuyTickets(model, userId);
             return Redirect("/Event/AllEvents");
         }
+
+        public int GetAvailable(string child, string adult, string available)
+        {
+            var quantity = int.Parse(child) + int.Parse(adult);
+            var av = int.Parse(available) - quantity;
+            return av;
+        }
     }
 }

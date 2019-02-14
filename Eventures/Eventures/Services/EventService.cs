@@ -27,10 +27,7 @@ namespace Eventures.Services
             this.ticketRepository = ticketRepository;
             this.cloudService = cloudService;
         }
-
       
-
-       
         public string Create(CreateEventViewModel model)
         {
             var ImageName = cloudService.UploadImageToCloud(model.Image);
@@ -41,8 +38,6 @@ namespace Eventures.Services
             this.repository.SaveChangesAsync();
             return $"Successfully create event {model.Name}";
         }
-
-       
 
         public string DeleteEvent(string id)
         {
