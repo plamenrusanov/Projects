@@ -129,8 +129,9 @@ namespace Eventures.Controllers
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
-            }    
-            string result = eventService.BuyTickets(model);
+            }
+            var userId = this.userManager.GetUserId(this.User);
+            string result = eventService.BuyTickets(model, userId);
             return Redirect("/Event/AllEvents");
         }
 

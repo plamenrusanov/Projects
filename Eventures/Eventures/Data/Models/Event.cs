@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Eventures.Data.Models
 {
     public class Event
     {
+        public Event()
+        {
+            this.Tickets = new HashSet<Ticket>();
+        }
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -23,5 +25,8 @@ namespace Eventures.Data.Models
 
         public decimal Gainings { get; set; }
 
+        public string ImageUrl { get; set; }
+
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

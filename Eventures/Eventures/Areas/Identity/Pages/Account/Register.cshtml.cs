@@ -16,6 +16,8 @@ using System.IO;
 using Eventures.Cloud;
 using CloudinaryDotNet.Actions;
 using CloudinaryDotNet;
+using Eventures.ValidationAttributes;
+using Eventures.Cloud.Contracts;
 
 namespace Eventures.Areas.Identity.Pages.Account
 {
@@ -27,7 +29,7 @@ namespace Eventures.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly IHostingEnvironment environment;
-        private readonly ConnectToCloud cloud;
+        private readonly ICloudService cloudService;
 
         public RegisterModel(
             UserManager<User> userManager,
@@ -35,14 +37,14 @@ namespace Eventures.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             IHostingEnvironment environment,
-            ConnectToCloud cloud)
+            ICloudService cloudService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             this.environment = environment;
-            this.cloud = cloud;
+            this.cloudService = cloudService;
         }
 
         [BindProperty]
@@ -94,6 +96,9 @@ namespace Eventures.Areas.Identity.Pages.Account
             [DataType(DataType.Upload)]
             public IFormFile Image { get; set; }
 
+            //[MinAge(18, ErrorMessage = "Min Age = {0}")]
+            //public DateTime? DayOfBirth { get; set; }
+
             //[Required]
             //[DataType(DataType.Upload)]
             //public IEnumerable<IFormFile> Images { get; set; }
@@ -109,13 +114,16 @@ namespace Eventures.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var ImageName = UploadImageToCloud();
-                var user = new User { UserName = Input.Username,
-                                      Email = Input.Email,
-                                      FirstName = Input.FirstName,
-                                      LastName = Input.LastName,
-                                      UniqueCitizenNumber = Input.UCN,
-                                      ImageUrl = ImageName.Result };
+                var ImageName = cloudService.UploadImageToCloud(Input.Image);
+                var user = new User
+                {
+                    UserName = Input.Username,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    UniqueCitizenNumber = Input.UCN,
+                    ImageUrl = ImageName.Result
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 await _userManager.AddToRoleAsync(user, "User");
                 //var fileName = this.environment.WebRootPath + "/files/" + $"{user.UserName}.jpg";
@@ -148,18 +156,6 @@ namespace Eventures.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
-        }
-
-        private async Task<string> UploadImageToCloud()
-        {
-            Stream stream = Input.Image.OpenReadStream();
-            var ImageName = Guid.NewGuid().ToString();
-            var uploadParams = new ImageUploadParams()
-            {
-                File = new FileDescription(ImageName, stream),
-            };
-            var uploadResult = cloud.cloudinary.Upload(uploadParams);
-            return await Task.FromResult<string>(uploadResult.Uri.AbsolutePath);
         }
     }
 }

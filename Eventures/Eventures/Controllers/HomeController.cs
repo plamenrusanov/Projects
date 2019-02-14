@@ -1,42 +1,28 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Eventures.Models;
 using Eventures.Data.Models;
-using Eventures.Data.Common;
+using Eventures.Services.Contracts;
+using Microsoft.AspNetCore.Identity;
 
 namespace Eventures.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository<Event> repository;
+        private readonly IHomeService homeService;
+        private readonly UserManager<User> userManager;
 
-        public HomeController(IRepository<Event> repository)
+        public HomeController(IHomeService homeService,
+                              UserManager<User> userManager)
         {
-            this.repository = repository;
+            this.homeService = homeService;
+            this.userManager = userManager;
         }
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = $"My application has {this.repository.All().Count()} events.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            var userId = this.userManager.GetUserId(this.User);
+            var myEvents = this.homeService.GetMyEvents(userId);
+            return View(myEvents);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

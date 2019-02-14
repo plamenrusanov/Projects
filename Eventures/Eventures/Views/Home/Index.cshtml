@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<MyEventViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -31,6 +32,24 @@ else
             <h2 class="text-white">Welcome, @User.Identity.Name!</h2>
             <hr class="bg-white hr-2" />
             <h3 class="text-white">Eventures wishes you an exciting experience.</h3>
+        </div>
+        <div class="jumbotron bg-event">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="bd">
+                        <h2 class="text-center">My events</h2>
+                        @foreach (var item in Model)
+                        {
+                            <partial name="_MyEventPartial" model="@item" />
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="bd">
+                        <h2 class="text-center">Suggest</h2>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 }

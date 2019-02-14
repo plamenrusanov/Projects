@@ -16,6 +16,7 @@ using Eventures.Data.Common;
 using AutoMapper;
 using Eventures.Cloud;
 using Eventures.AutoMapper;
+using Eventures.Cloud.Contracts;
 
 namespace Eventures
 {
@@ -85,6 +86,8 @@ namespace Eventures
             //Application services
             services.AddTransient<IHashService, HashService>();
             services.AddTransient<IEventService, EventService>();
+            services.AddTransient<IHomeService, HomeService>();
+            services.AddTransient<ICloudService, CloudService>();
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped(typeof(ConnectToCloud));
             

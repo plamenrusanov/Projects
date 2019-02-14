@@ -17,7 +17,7 @@ namespace Eventures.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-D1G8VKM\SQLEXPRESS;Database=Eventures;Integrated Security=true;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-D1G8VKM\SQLEXPRESS;Database=Eventures;Integrated Security=true;").UseLazyLoadingProxies();
             base.OnConfiguring(optionsBuilder);
         }
 

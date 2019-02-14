@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Eventures.Cloud.Contracts;
 using Eventures.Data.Common;
 using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,22 +14,28 @@ namespace Eventures.Services
     {
         private readonly IMapper mapper;
         private readonly IRepository<Event> repository;
+        private readonly IRepository<Ticket> ticketRepository;
+        private readonly ICloudService cloudService;
 
         public EventService(IMapper mapper,
-                            IRepository<Event> repository)
+                            IRepository<Event> repository, 
+                            IRepository<Ticket> ticketRepository,
+                            ICloudService cloudService)
         {
             this.mapper = mapper;
             this.repository = repository;
+            this.ticketRepository = ticketRepository;
+            this.cloudService = cloudService;
         }
 
-        public string BuyTickets(BuyTicketViewModel model )
+        public string BuyTickets(BuyTicketViewModel model, string  userId)
         {
             var ev = this.FindEventById(model.EventId);
             if (ev == null)
             {
                 return "Тhe event does not exist";
             }
-
+            CreateTicket(model, userId);
             var adultMoney = model.AdultQuantity * model.RegularPrice;
             var childMoney = model.ChildQuantity * (model.RegularPrice/2);
             ev.Gainings += (adultMoney + childMoney);
@@ -40,9 +48,26 @@ namespace Eventures.Services
             
         }
 
+        private void CreateTicket(BuyTicketViewModel model, string userId)
+        {
+            var ticket = new Ticket()
+            {
+                UserId = userId,
+                EventId = model.EventId,
+                RegularPrice = model.RegularPrice,
+                Adult = model.AdultQuantity,
+                Child = model.ChildQuantity
+            };
+            ticketRepository.AddAsync(ticket);
+            ticketRepository.SaveChangesAsync();
+        }
+
         public string Create(CreateEventViewModel model)
         {
-            var even = mapper.Map<Event>(model);          
+            var ImageName = cloudService.UploadImageToCloud(model.Image);
+
+            var even = mapper.Map<Event>(model);
+            even.ImageUrl = ImageName.Result;
             this.repository.AddAsync(even);
             this.repository.SaveChangesAsync();
             return $"Successfully create event {model.Name}";

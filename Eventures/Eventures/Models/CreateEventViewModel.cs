@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -29,6 +30,8 @@ namespace Eventures.Models
         [Required]
         public decimal PricePerTicket { get; set; }
 
+        [DataType(DataType.Upload)]
+        public IFormFile Image { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

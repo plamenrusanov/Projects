@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Eventures.Data.Models
+﻿namespace Eventures.Data.Models
 {
     public class Ticket
     {
         public string Id { get; set; }
 
-        public string Area { get; set; }
+        public int Adult { get; set; }
 
-        public int? Row { get; set; }
-
-        public int? Number { get; set; }
+        public int Child { get; set; }
 
         public decimal RegularPrice { get; set; }
 
         public string UserId { get; set; }
-        public User Owner { get; set; }
+        public virtual User User { get; set; }
+
+        public string EventId { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

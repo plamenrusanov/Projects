@@ -1,8 +1,5 @@
 ﻿using Eventures.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Eventures.Services.Contracts
 {
@@ -18,7 +15,7 @@ namespace Eventures.Services.Contracts
 
         string DeleteEvent(string id);
 
-        string BuyTickets(BuyTicketViewModel model);
+        string BuyTickets(BuyTicketViewModel model, string userId);
 
         BuyTicketViewModel CreateBuyTicketViewModel(string eventId);
 
