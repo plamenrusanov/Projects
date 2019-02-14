@@ -30,6 +30,13 @@ namespace Eventures.AutoMapper
                 .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.Event.Start))
                 .ReverseMap();
            
+            CreateMap<BuyTicketViewModel, Ticket>()
+                .ForMember(dest => dest.Adult, opt => opt.MapFrom(src => src.AdultQuantity))
+                .ForMember(dest => dest.Child, opt => opt.MapFrom(src => src.ChildQuantity))
+                .ForMember(dest => dest.RegularPrice, opt => opt.MapFrom(src => src.RegularPrice))
+                .ForMember(dest => dest.EventId, opt => opt.MapFrom(src => src.EventId))
+                .ReverseMap();
         }
     }
 }
+      

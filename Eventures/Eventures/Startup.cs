@@ -88,6 +88,7 @@ namespace Eventures
             services.AddTransient<IEventService, EventService>();
             services.AddTransient<IHomeService, HomeService>();
             services.AddTransient<ICloudService, CloudService>();
+            services.AddTransient<ITicketService, TicketService>();
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped(typeof(ConnectToCloud));
             

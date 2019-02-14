@@ -1,4 +1,5 @@
-﻿using Eventures.Models;
+﻿using Eventures.Data.Models;
+using Eventures.Models;
 using System.Collections.Generic;
 
 namespace Eventures.Services.Contracts
@@ -15,10 +16,8 @@ namespace Eventures.Services.Contracts
 
         string DeleteEvent(string id);
 
-        string BuyTickets(BuyTicketViewModel model, string userId);
-
-        BuyTicketViewModel CreateBuyTicketViewModel(string eventId);
-
         bool Exist(string id);
+
+        Event FindEventById(string id);
     }
 }

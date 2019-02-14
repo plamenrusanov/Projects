@@ -110,30 +110,7 @@ namespace Eventures.Controllers
             }
             string result = eventService.DeleteEvent(id);
             return Redirect("/Event/AllEvents");
-        }
-
-        [HttpGet]
-        public IActionResult BuyTicket([IsValidEventId]string eventId)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return RedirectToAction("AllEvents");
-            }
-            var model = this.eventService.CreateBuyTicketViewModel(eventId);
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public IActionResult BuyTicket([FromForm]BuyTicketViewModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(model);
-            }
-            var userId = this.userManager.GetUserId(this.User);
-            string result = eventService.BuyTickets(model, userId);
-            return Redirect("/Event/AllEvents");
-        }
+        }   
 
         public int GetAvailable(string child, string adult, string available)
         {

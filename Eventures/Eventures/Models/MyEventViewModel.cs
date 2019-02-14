@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Eventures.Models
 {
@@ -13,8 +14,10 @@ namespace Eventures.Models
 
         public string ImageUrl { get; set; }
 
+        [Display(Name ="Adults:")]
         public int AdultQuantity { get; set; }
 
+        [Display(Name ="Children:")]
         public int ChildQuantity { get; set; }
     }
 }

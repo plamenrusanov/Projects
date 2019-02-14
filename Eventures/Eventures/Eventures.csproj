@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Event\BuyTicket.cshtml">
+    <Content Update="Views\Ticket\BuyTicket.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Event\Delete.cshtml">

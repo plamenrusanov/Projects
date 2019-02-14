@@ -16,4 +16,16 @@
         <hr class="hr-event"/>
         @Html.DisplayFor(modelItem => Model.Place)
     </div>
+    <div class="col-sm-3 text-center">
+        @Html.DisplayFor(modelItem => Model.Start.DayOfWeek)
+        <hr class="hr-event" />
+        @Html.DisplayFor(modelItem => Model.Start)
+    </div> 
+    <div class="col-sm-3 text-center">
+        @Html.LabelFor(m => m.AdultQuantity)
+        @Html.DisplayFor(m => m.AdultQuantity)
+        <hr class="hr-event" />
+        @Html.LabelFor(m => m.ChildQuantity)
+        @Html.DisplayFor(m => m.ChildQuantity)
+    </div> 
 </div>
