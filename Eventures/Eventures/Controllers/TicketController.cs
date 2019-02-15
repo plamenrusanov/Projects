@@ -1,4 +1,5 @@
-﻿using Eventures.Data.Models;
+﻿using Eventures.Common;
+using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
 using Eventures.ValidationAttributes;
@@ -28,7 +29,7 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction("AllEvents");
+                return RedirectToAction(GlobalConstants.AllEventsActionString);
             }
             var model = this.ticketService.CreateBuyTicketViewModel(eventId);
             return this.View(model);
@@ -43,7 +44,7 @@ namespace Eventures.Controllers
             }
             var userId = this.userManager.GetUserId(this.User);
             string result = this.ticketService.BuyTickets(model, userId);
-            return Redirect("/Event/AllEvents");
+            return RedirectToAction(GlobalConstants.AllEventsActionString);
         }
 
         public int GetAvailable(string child, string adult, string available)

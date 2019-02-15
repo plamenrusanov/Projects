@@ -1,4 +1,5 @@
-﻿using Eventures.Data.Models;
+﻿using Eventures.Common;
+using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
 using Eventures.ValidationAttributes;
@@ -53,9 +54,9 @@ namespace Eventures.Controllers
             {
                 return this.Unauthorized();
             }
-            this.eventService.Create(model);
-            this.logger.LogInformation("Event created: " + model.Name, model);
-            return Redirect("AllEvents");
+            var result = this.eventService.Create(model);
+            this.logger.LogInformation(result);
+            return RedirectToAction(GlobalConstants.AllEventsActionString);
         }
 
         [HttpGet]
@@ -63,7 +64,7 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction("AllEvents");
+                return RedirectToAction(GlobalConstants.AllEventsActionString);
             }
             var model = eventService.GetEvent(id);
             return this.View(model);
@@ -77,14 +78,14 @@ namespace Eventures.Controllers
                 return this.View(model);               
             }
             eventService.EditEvent(model);
-            return RedirectToAction("AllEvents");
+            return RedirectToAction(GlobalConstants.AllEventsActionString);
         }
 
         public IActionResult Details([IsValidEventId]string id)
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction("AllEvents");
+                return RedirectToAction(GlobalConstants.AllEventsActionString);
             }
             var model = eventService.GetEvent(id);
             return this.View(model);
@@ -95,7 +96,7 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction("AllEvents");
+                return RedirectToAction(GlobalConstants.AllEventsActionString);
             }
             var model = eventService.GetEvent(id);
             return this.View(model);
@@ -106,12 +107,10 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction("AllEvents");
+                return RedirectToAction(GlobalConstants.AllEventsActionString);
             }
             string result = eventService.DeleteEvent(id);
-            return Redirect("/Event/AllEvents");
-        }   
-
-        
+            return RedirectToAction(GlobalConstants.AllEventsActionString);
+        }    
     }
 }

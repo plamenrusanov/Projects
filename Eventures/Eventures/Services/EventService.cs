@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Eventures.Cloud.Contracts;
+using Eventures.Common;
 using Eventures.Data.Common;
 using Eventures.Data.Models;
 using Eventures.Models;
@@ -36,7 +37,7 @@ namespace Eventures.Services
             even.ImageUrl = ImageName.Result;
             this.repository.AddAsync(even);
             this.repository.SaveChangesAsync();
-            return $"Successfully create event {model.Name}";
+            return string.Format(GlobalConstants.CreateEvent, model.Name);
         }
 
         public string DeleteEvent(string id)
@@ -48,7 +49,7 @@ namespace Eventures.Services
             var ev = this.FindEventById(id);
             this.repository.Delete(ev);
             this.repository.SaveChangesAsync();
-            return $"Successfully delete event {ev.Name}";
+            return string.Format(GlobalConstants.DeleteEvent, ev.Name);
         }
 
         public string EditEvent(EditEventViewModel model)
@@ -56,7 +57,7 @@ namespace Eventures.Services
             var ev = this.FindEventById(model.Id);
             mapper.Map(model, ev);
             this.repository.SaveChangesAsync();
-            return $"Successfully edit event {model.Name}";
+            return string.Format(GlobalConstants.EditEvent, model.Name);
         }
 
         public IEnumerable<EventViewModel> GetAllEvents()

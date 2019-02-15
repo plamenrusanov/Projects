@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
+using Eventures.Common;
 using Eventures.Data.Common;
 using Eventures.Data.Models;
 using Eventures.Models;
 using Eventures.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Eventures.Services
 {
@@ -32,7 +29,7 @@ namespace Eventures.Services
             var ev = eventService.FindEventById(model.EventId);
             if (ev == null)
             {
-                return "Тhe event does not exist";
+                return GlobalConstants.EventNotExist;
             }
             CreateTicket(model, userId);
             var adultMoney = model.AdultQuantity * model.RegularPrice;
@@ -43,7 +40,7 @@ namespace Eventures.Services
             ev.TotalTickets -= tickets;
             eventRepository.SaveChangesAsync();
 
-            return $"Successfully bought {tickets} tickets.";
+            return string.Format(GlobalConstants.BoughtTicket, tickets);
 
         }
         private void CreateTicket(BuyTicketViewModel model, string userId)
