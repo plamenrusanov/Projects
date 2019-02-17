@@ -64,7 +64,7 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction(GlobalConstants.AllEventsActionString);
+                return NotFound();
             }
             var model = eventService.GetEvent(id);
             return this.View(model);
@@ -85,7 +85,7 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction(GlobalConstants.AllEventsActionString);
+                return NotFound();
             }
             var model = eventService.GetEvent(id);
             return this.View(model);
@@ -96,7 +96,7 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction(GlobalConstants.AllEventsActionString);
+                return NotFound();
             }
             var model = eventService.GetEvent(id);
             return this.View(model);
@@ -107,7 +107,7 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction(GlobalConstants.AllEventsActionString);
+                return NotFound();
             }
             string result = eventService.DeleteEvent(id);
             return RedirectToAction(GlobalConstants.AllEventsActionString);

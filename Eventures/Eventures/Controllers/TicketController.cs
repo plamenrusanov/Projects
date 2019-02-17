@@ -5,10 +5,6 @@ using Eventures.Services.Contracts;
 using Eventures.ValidationAttributes;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Eventures.Controllers
 {
@@ -29,7 +25,7 @@ namespace Eventures.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return RedirectToAction(GlobalConstants.AllEventsActionString);
+                return NotFound();
             }
             var model = this.ticketService.CreateBuyTicketViewModel(eventId);
             return this.View(model);
@@ -44,7 +40,7 @@ namespace Eventures.Controllers
             }
             var userId = this.userManager.GetUserId(this.User);
             string result = this.ticketService.BuyTickets(model, userId);
-            return RedirectToAction(GlobalConstants.AllEventsActionString);
+            return Redirect(GlobalConstants.AllEventsActionString);
         }
 
         public int GetAvailable(string child, string adult, string available)

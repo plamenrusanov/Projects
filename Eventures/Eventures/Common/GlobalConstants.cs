@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Eventures.Common
+﻿namespace Eventures.Common
 {
     public static class GlobalConstants
     {
@@ -17,6 +12,6 @@ namespace Eventures.Common
 
         public const string EditEvent = "Successfully edit event {0}.";
 
-        public const string AllEventsActionString = "AllEvents";
+        public const string AllEventsActionString = "/Event/AllEvents";
     }
 }

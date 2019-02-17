@@ -44,7 +44,7 @@ namespace Eventures.Services
         {
             if (!Exist(id))
             {
-                return null;
+                return GlobalConstants.EventNotExist;
             }
             var ev = this.FindEventById(id);
             this.repository.Delete(ev);

@@ -84,11 +84,10 @@ namespace Eventures
             services.AddSingleton(mapper);
 
             //Application services
-            services.AddTransient<IHashService, HashService>();
-            services.AddTransient<IEventService, EventService>();
-            services.AddTransient<IHomeService, HomeService>();
-            services.AddTransient<ICloudService, CloudService>();
-            services.AddTransient<ITicketService, TicketService>();
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<ICloudService, CloudService>();
+            services.AddScoped<ITicketService, TicketService>();
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
             services.AddScoped(typeof(ConnectToCloud));
             

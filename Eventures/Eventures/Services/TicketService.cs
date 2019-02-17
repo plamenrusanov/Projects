@@ -48,7 +48,6 @@ namespace Eventures.Services
             Ticket ticket = mapper.Map<BuyTicketViewModel, Ticket>(model);
             ticket.UserId = userId;
             ticketRepository.AddAsync(ticket);
-            ticketRepository.SaveChangesAsync();
         }
 
         public BuyTicketViewModel CreateBuyTicketViewModel(string eventId)
