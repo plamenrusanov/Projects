@@ -40,8 +40,8 @@ namespace Eventures
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                       .UseLazyLoadingProxies());
             services
                 .AddIdentity<User, IdentityRole>(options =>
                 {
@@ -58,23 +58,23 @@ namespace Eventures
                 .AddDefaultTokenProviders();
             services.AddScoped<IUserClaimsPrincipalFactory<User>, UserClaimsPrincipalFactory<User, IdentityRole>>();
             services.AddResponseCompression(options =>
-            {
-                options.EnableForHttps = true;
-            });
+                {
+                    options.EnableForHttps = true;
+                });
             services.AddHttpsRedirection(options => 
-            {
-                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-                options.HttpsPort = 44379;
-            });
+                {
+                    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                    options.HttpsPort = 44379;
+                });
             services.AddMvc(opt =>
-                            opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
+                 opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSession(opt =>
-            {
-                opt.Cookie.HttpOnly = true;
-                opt.Cookie.Name = "SID";
-                opt.IdleTimeout = new System.TimeSpan(0, 2, 0);
-            });
+                {
+                    opt.Cookie.HttpOnly = true;
+                    opt.Cookie.Name = "SID";
+                    opt.IdleTimeout = new System.TimeSpan(0, 2, 0);
+                });
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
             {

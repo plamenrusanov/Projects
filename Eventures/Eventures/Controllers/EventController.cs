@@ -54,7 +54,7 @@ namespace Eventures.Controllers
             {
                 return this.Unauthorized();
             }
-            var result = this.eventService.Create(model);
+            var result = this.eventService.CreateEvent(model);
             this.logger.LogInformation(result);
             return RedirectToAction(GlobalConstants.AllEventsActionString);
         }

@@ -8,6 +8,7 @@ using Eventures.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Eventures.Services
 {
@@ -29,12 +30,13 @@ namespace Eventures.Services
             this.cloudService = cloudService;
         }
       
-        public string Create(CreateEventViewModel model)
+        public string CreateEvent(CreateEventViewModel model)
         {
-            var ImageName = cloudService.UploadImageToCloud(model.Image);
-
             var even = mapper.Map<Event>(model);
-            even.ImageUrl = ImageName.Result;
+            if (model.Image != null)
+            {
+                even.ImageUrl = cloudService.UploadImageToCloud(model.Image).Result;
+            }
             this.repository.AddAsync(even);
             this.repository.SaveChangesAsync();
             return string.Format(GlobalConstants.CreateEvent, model.Name);

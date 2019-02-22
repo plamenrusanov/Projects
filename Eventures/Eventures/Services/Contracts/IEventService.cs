@@ -6,7 +6,7 @@ namespace Eventures.Services.Contracts
 {
     public interface IEventService
     {
-        string Create(CreateEventViewModel model);
+        string CreateEvent(CreateEventViewModel model);
 
         IEnumerable<EventViewModel> GetAllEvents();
 
