@@ -10,7 +10,7 @@ namespace Eventures.Data
         where TEntity : class
     {
         private readonly ApplicationDbContext context;
-        private DbSet<TEntity> dbSet;
+        private readonly DbSet<TEntity> dbSet;
 
         public DbRepository(ApplicationDbContext context)
         {
