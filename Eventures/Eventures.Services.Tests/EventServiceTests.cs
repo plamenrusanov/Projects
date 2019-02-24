@@ -52,6 +52,7 @@ namespace Eventures.Services.Tests
                 Start = DateTime.Now,
                 End = DateTime.Now.AddHours(3)
             };
+
             this.eventService.CreateEvent(eventModel);
 
             var actual = this.context.Events.FirstOrDefaultAsync(x => x.Name == eventModel.Name).Result;
@@ -60,6 +61,7 @@ namespace Eventures.Services.Tests
             Assert.True(eventModel.Place == actual.Place);
             Assert.True(eventModel.TotalTickets == actual.TotalTickets);
             Assert.True(eventModel.PricePerTicket == actual.PricePerTicket);
+
             this.context.Events.Remove(actual);
             this.context.SaveChangesAsync();
         }
@@ -92,6 +94,45 @@ namespace Eventures.Services.Tests
         {
             var result = this.eventService.DeleteEvent("fakeId");
             Assert.True(result == GlobalConstants.EventNotExist);
+        }
+
+        [Fact]
+        public void EditEventShouldRealyEdit()
+        {
+            var ev = new Event
+            {
+                Id = "eventTestModel",
+                Name = "SomeNameFromBase",
+                Place = "SomePlaceFromBase",
+                TotalTickets = 100,
+                PricePerTicket = 10.50m,
+                Start = DateTime.Now,
+                End = DateTime.Now.AddHours(3)
+            };
+
+            this.context.Events.Add(ev);
+            this.context.SaveChanges();
+
+            var eventModel = new EditEventViewModel
+            {
+                Name = "SomeName",
+                Place = "SomePlace",
+                TotalTickets = 100,
+                PricePerTicket = 10.50m,
+                Start = DateTime.Now,
+                End = DateTime.Now.AddHours(3),
+                Id = ev.Id
+            };
+
+            this.eventService.EditEvent(eventModel);
+
+            var actual = this.context.Events.FirstOrDefaultAsync(x => x.Id == ev.Id).Result;
+
+            Assert.True(actual.Name == eventModel.Name);
+            Assert.True(actual.Place == eventModel.Place);
+
+            this.context.Events.Remove(actual);
+            this.context.SaveChangesAsync();
         }
     }
 }
