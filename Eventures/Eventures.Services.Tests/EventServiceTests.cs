@@ -10,8 +10,6 @@ using Eventures.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace Eventures.Services.Tests
@@ -135,47 +133,6 @@ namespace Eventures.Services.Tests
 
             this.context.Events.Remove(actual);
             this.context.SaveChangesAsync();
-        }
-
-        [Fact]
-        public void GetAllEventsReturnCorrectCountOfEvents()
-        {
-            var events = new List<Event>
-            {
-                new Event {Name = "FirstEvent", Place = "Sofia", Start = DateTime.Now.AddSeconds(1)},
-                new Event {Name = "SecondEvent", Place = "Plovdiv",Start = DateTime.Now.AddSeconds(1)},
-                new Event {Name = "ThirdEvent", Place = "Ruse", Start = DateTime.Now.AddSeconds(1)}
-            };
-            this.context.Events.AddRange(events);
-            this.context.SaveChanges();
-
-            var result = this.eventService.GetAllEvents();
-
-            Assert.True(result.ToList().Count == events.Count);
-
-            this.context.Events.RemoveRange(events);
-            this.context.SaveChanges();
-        }
-
-        [Fact]
-        public void GetEventShouldReturnCorrectEvent()
-        {
-            var events = new List<Event>
-            {
-                new Event {Name = "FirstEvent", Place = "Sofia", Start = DateTime.Now.AddSeconds(1)},
-                new Event {Name = "SecondEvent", Place = "Plovdiv",Start = DateTime.Now.AddSeconds(1)},
-                new Event {Name = "ThirdEvent", Place = "Ruse", Start = DateTime.Now.AddSeconds(1)}
-            };
-            this.context.Events.AddRange(events);
-            this.context.SaveChanges();
-
-            var result = this.eventService.GetEvent(events[1].Id);
-
-            Assert.True(result.Name == events[1].Name);
-            Assert.True(result.Place == events[1].Place);
-
-            this.context.Events.RemoveRange(events);
-            this.context.SaveChanges();
         }
     }
 }
