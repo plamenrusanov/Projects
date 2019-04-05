@@ -1,9 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Taxi.Data.Models
 {
     public class Transfer
     {
+        public Transfer()
+        {
+            this.Id = Guid.NewGuid().ToString();
+            this.Customers = new HashSet<Customer>();
+        }
         public string Id { get; set; }
 
         public string From { get; set; }
