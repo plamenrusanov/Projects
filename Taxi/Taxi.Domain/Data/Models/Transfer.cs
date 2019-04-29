@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Taxi.Data.Models
+namespace Taxi.Domain.Data.Models
 {
     public class Transfer
     {
         public Transfer()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Customers = new HashSet<Customer>();
         }
         public string Id { get; set; }
 
@@ -18,11 +17,15 @@ namespace Taxi.Data.Models
 
         public decimal Price { get; set; }
 
+        [ForeignKey("DriverId")]
         public string DriverId { get; set; }
         public virtual Driver Driver { get; set; }
 
-        public virtual ICollection<Customer> Customers { get; set; }
+        [ForeignKey("CustomerId")]
+        public string CustomerId { get; set; }
+        public  virtual Customer Customer { get; set; }
 
+        [ForeignKey("CarId")]
         public string CarId { get; set; }
         public virtual Car Car { get; set; }
 

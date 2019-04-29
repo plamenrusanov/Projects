@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Taxi.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Taxi.Domain.Data.Models;
 
 namespace Taxi
 {
@@ -37,12 +38,23 @@ namespace Taxi
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+                    Configuration.GetConnectionString("DefaultConnection"))
+                    .UseLazyLoadingProxies());
+            services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequiredUniqueChars = 3;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequiredLength = 3;
+                opt.User.AllowedUserNameCharacters = string.Empty;
+            })
+                .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(opt => opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

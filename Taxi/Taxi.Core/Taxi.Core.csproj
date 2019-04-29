@@ -8,4 +8,8 @@
     <ProjectReference Include="..\Taxi.Domain\Taxi.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Contracts\" />
+  </ItemGroup>
+
 </Project>

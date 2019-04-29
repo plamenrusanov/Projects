@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Taxi.Data.Models
+namespace Taxi.Domain.Data.Models
 {
     public class Driver
     {
@@ -14,11 +14,13 @@ namespace Taxi.Data.Models
 
         public string Id { get; set; }
 
+        [ForeignKey("UserId")]
         public string UserId { get; set; }
-        public virtual IdentityUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<Transfer> Transfers { get; set; }
 
+        [ForeignKey("CarId")]
         public string CarId { get; set; }
         public virtual Car Car { get; set; }
     }

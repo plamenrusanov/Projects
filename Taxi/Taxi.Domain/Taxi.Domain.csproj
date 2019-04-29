@@ -3,8 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190410082712_tryToSetDependencyUserCustomer.cs" />
+    <Compile Remove="Migrations\20190410083203_tryToSetDependencyUserCustomer.cs" />
+    <Compile Remove="Migrations\20190428193213_asd.cs" />
+    <Compile Remove="Migrations\20190428193213_asd.Designer.cs" />
+    <Compile Remove="Migrations\20190428193804_asd.cs" />
+    <Compile Remove="Migrations\20190428193804_asd.Designer.cs" />
+  </ItemGroup>
  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
   </ItemGroup>
 </Project>
