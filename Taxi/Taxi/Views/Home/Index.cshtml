@@ -1,8 +1,23 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (this.User.IsInRole("Admin"))
+{
+    <h1>Admin</h1>
+}
+else if (this.User.IsInRole("Driver"))
+{
+    <h1>Driver</h1>
+}
+else if (this.User.IsInRole("Customer"))
+{
+    <h1>Custumer</h1>
+}
+else
+{
+    <h1>You dont have role!</h1>
+}
+
